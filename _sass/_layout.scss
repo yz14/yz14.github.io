@@ -2,11 +2,13 @@
  * Site header
  */
 .site-header {
-  border-bottom: 1px solid $grey-color-light;
+  border-bottom: 1px solid var(--border-color);
+  background-color: var(--header-bg);
   min-height: 56px;
 
   padding-top: 10px;
   padding-bottom: 10px;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 
   @include media-query($on-mobile) {
     padding-top: 0;
@@ -29,7 +31,7 @@
 
   &,
   &:visited {
-    color: $grey-color-dark;
+    color: var(--grey-color-dark);
   }
 }
 
@@ -46,7 +48,7 @@
   }
 
   .page-link {
-    color: $text-color;
+    color: var(--text-color);
     line-height: $base-line-height;
 
     // Gaps between nav items, but not on the first one
@@ -60,7 +62,7 @@
     top: 12px;
     right: 24px;
 
-    border: 1px solid $grey-color-light;
+    border: 1px solid var(--grey-color-light);
     border-radius: 5px;
     text-align: right;
 
@@ -73,14 +75,14 @@
       padding-top: 4px;
       text-align: center;
 
-      background: #ffffff url($base-url + '/assets/img/menu.png') 6px 4px no-repeat;
+      background: var(--header-bg) url($base-url + '/assets/img/menu.png') 6px 4px no-repeat;
       background-size: 26px 26px;
     }
 
     .menu {
       clear: both;
       display: none;
-      background-color: #ffffff;
+      background-color: var(--header-bg);
       min-width: 10em;
       padding-bottom: 5px;
     }
@@ -97,8 +99,10 @@
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid $grey-color-light;
+  border-top: 1px solid var(--border-color);
   padding: $spacing-unit 0;
+  background-color: var(--background-color);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
 
   @include media-query($on-mobile) {
     padding-top: 10px;
@@ -118,7 +122,7 @@
 
 .footer-col-wrapper {
   font-size: 15px;
-  color: $grey-color;
+  color: var(--grey-color);
   margin-left: -$spacing-unit / 2;
   @extend %clearfix;
 }
@@ -142,7 +146,7 @@
 
 .powered-by {
   font-size: 13px !important;
-  color: $grey-color;
+  color: var(--grey-color);
 }
 
 @include media-query($on-mobile) {

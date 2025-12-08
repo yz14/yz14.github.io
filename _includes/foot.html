@@ -1,2 +1,48 @@
 <script type="text/javascript" src="{{ "/assets/js/vendor/cash-4.1.5.min.js" | absolute_url }}"></script>
 <script type="text/javascript" src="{{ "/assets/js/site.js" | absolute_url }}"></script>
+
+<!-- Theme Toggle Script -->
+<script>
+(function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const html = document.documentElement;
+  
+  // Get saved theme or default to light
+  function getTheme() {
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved;
+    // Check system preference
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return 'dark';
+    }
+    return 'light';
+  }
+  
+  // Apply theme
+  function setTheme(theme) {
+    html.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }
+  
+  // Initialize theme
+  setTheme(getTheme());
+  
+  // Toggle theme on button click
+  if (themeToggle) {
+    themeToggle.addEventListener('click', function() {
+      const current = html.getAttribute('data-theme') || 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      setTheme(next);
+    });
+  }
+  
+  // Listen for system theme changes
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('theme')) {
+        setTheme(e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+})();
+</script>
