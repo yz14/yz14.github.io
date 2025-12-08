@@ -7,44 +7,63 @@
 // Our variables
 $base-url: "{{ site.baseurl }}";
 
-$base-font-family: Charter, Georgia, Helvetica, Arial, sans-serif;
-$base-font-size: 14px;
+// Modern academic font stack
+$base-font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+$heading-font-family: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+$mono-font-family: "JetBrains Mono", "SF Mono", "Fira Code", Consolas, monospace;
+$base-font-size: 15px;
 $small-font-size: $base-font-size * 0.875;
-$base-line-height: 1.7;
+$base-line-height: 1.75;
 
-$spacing-unit: 30px;
+$spacing-unit: 32px;
 
-$text-color: #111;
-$background-color: #fdfdfd;
-$brand-color: #2a7ae2;
+$text-color: #1a1a2e;
+$background-color: #fafbfc;
+$brand-color: #0066cc;
 
-$grey-color: #828282;
+$grey-color: #6b7280;
 $grey-color-light: lighten($grey-color, 40%);
 $grey-color-dark: darken($grey-color, 25%);
 
-// CSS Custom Properties for theme switching
+// CSS Custom Properties for theme switching - Tech + Academic palette
 :root {
-  --text-color: #111;
-  --background-color: #fdfdfd;
-  --brand-color: #2a7ae2;
-  --grey-color: #828282;
-  --grey-color-light: #e8e8e8;
-  --grey-color-dark: #424242;
-  --code-bg: #eef;
-  --border-color: #e8e8e8;
-  --header-bg: #fdfdfd;
+  --text-color: #1a1a2e;
+  --text-secondary: #4a5568;
+  --background-color: #fafbfc;
+  --background-secondary: #f1f5f9;
+  --brand-color: #0066cc;
+  --brand-hover: #0052a3;
+  --accent-color: #00a86b;
+  --grey-color: #6b7280;
+  --grey-color-light: #e5e7eb;
+  --grey-color-dark: #374151;
+  --code-bg: #f8fafc;
+  --code-border: #e2e8f0;
+  --border-color: #e5e7eb;
+  --header-bg: rgba(250, 251, 252, 0.95);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 [data-theme="dark"] {
-  --text-color: #e0e0e0;
-  --background-color: #1a1a2e;
-  --brand-color: #64b5f6;
-  --grey-color: #9e9e9e;
-  --grey-color-light: #3a3a4a;
-  --grey-color-dark: #bdbdbd;
-  --code-bg: #2a2a3e;
-  --border-color: #3a3a4a;
-  --header-bg: #16162a;
+  --text-color: #e2e8f0;
+  --text-secondary: #a0aec0;
+  --background-color: #0f172a;
+  --background-secondary: #1e293b;
+  --brand-color: #60a5fa;
+  --brand-hover: #93c5fd;
+  --accent-color: #34d399;
+  --grey-color: #94a3b8;
+  --grey-color-light: #334155;
+  --grey-color-dark: #cbd5e1;
+  --code-bg: #1e293b;
+  --code-border: #334155;
+  --border-color: #334155;
+  --header-bg: rgba(15, 23, 42, 0.95);
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.4), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
 }
 
 $on-mobile: 500px;
@@ -59,39 +78,94 @@ $on-laptop: 800px;
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "base", "layout", "site", "work", "blog", "post", "404";
 
-// Theme Toggle Button
+// Theme Toggle Button - Modern tech style
 .theme-toggle {
   position: relative;
-  background: none;
+  background: var(--background-secondary);
   border: 1px solid var(--border-color);
-  border-radius: 20px;
+  border-radius: 8px;
   cursor: pointer;
-  padding: 6px 12px;
+  padding: 8px 10px;
   font-size: 16px;
   line-height: 1;
   color: var(--text-color);
-  background-color: var(--header-bg);
-  transition: all 0.3s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
 
   &:hover {
     border-color: var(--brand-color);
     background-color: var(--grey-color-light);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-1px);
+  }
+
+  &:active {
+    transform: translateY(0);
   }
 
   .icon-sun,
   .icon-moon {
     display: none;
+    line-height: 0;
+    
+    svg {
+      stroke: var(--text-color);
+    }
   }
 }
 
 [data-theme="light"] .theme-toggle .icon-sun,
 :root:not([data-theme]) .theme-toggle .icon-sun {
-  display: inline;
+  display: flex;
 }
 
 [data-theme="dark"] .theme-toggle .icon-moon {
-  display: inline;
+  display: flex;
+}
+
+// Site title text styling
+.title-text {
+  font-family: $heading-font-family;
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--text-color);
+  transition: color 0.2s ease;
+  
+  &:hover {
+    color: var(--brand-color);
+  }
+}
+
+// Selection styling
+::selection {
+  background-color: var(--brand-color);
+  color: white;
+}
+
+// Smooth scrolling
+html {
+  scroll-behavior: smooth;
+}
+
+// Custom scrollbar
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background-secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--grey-color);
+  border-radius: 4px;
+  
+  &:hover {
+    background: var(--grey-color-dark);
+  }
 }

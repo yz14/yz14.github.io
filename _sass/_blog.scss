@@ -1,21 +1,63 @@
+/**
+ * Blog list - Clean academic list style
+ */
 .blog-post-list {
+  list-style: none;
+  margin-left: 0;
+  
+  li {
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    transition: background-color 0.2s ease;
+    
+    &:hover {
+      background-color: var(--background-secondary);
+      margin: 0 -1rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      border-radius: 8px;
+    }
+    
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
   .blog-post-date {
-    width: 6em;
-    color: var(--grey-color);
-    display: block;
-    float: left;
+    width: 5rem;
+    flex-shrink: 0;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-weight: 500;
+    font-family: $mono-font-family;
 
     @include media-query($on-mobile) {
-      display: block;
-      float: none;
-      color: var(--text-color);
-      font-size: 11px;
-      margin-top: 14px;
+      width: auto;
+      font-size: 0.75rem;
     }
   }
 
   .blog-post-title {
-    font-size: 100%;
-    letter-spacing: normal;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    
+    a {
+      border-bottom: none;
+      
+      &:hover {
+        color: var(--brand-color);
+      }
+    }
+  }
+  
+  @include media-query($on-mobile) {
+    li {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
   }
 }
